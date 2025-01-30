@@ -16,7 +16,16 @@ namespace Scripts.UI
             PlayerEvents.OnWin += display;
         }
 
+        private void OnDestroy()
+        {
+            PlayerEvents.OnWin -= display;
+        }
+
         private void display()
-            => winPanel.gameObject.SetActive(true);
+        {
+            winPanel.gameObject.SetActive(true);
+
+            PlayerEvents.OnWin -= display;
+        }
     }
 }
